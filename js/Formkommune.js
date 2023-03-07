@@ -30,7 +30,7 @@ async function postFormData(url, formData) {
     const plainFormData = Object.fromEntries(formData.entries())
     console.log(plainFormData)
 
-    const formDataJasonString = JSON.Stringify(plainFormData)
+    const formDataJasonString = JSON.stringify(plainFormData)
 
     const fetchOptions = {
         method: "POST",
@@ -41,6 +41,13 @@ async function postFormData(url, formData) {
 
     }
 
+
     const response = await fetch(url, fetchOptions)
+
+    if (! response.ok){
+        const errorMessage = await response.text()
+        throw new Error(errorMessage)
+    }
+    return response.json();
 
 }
