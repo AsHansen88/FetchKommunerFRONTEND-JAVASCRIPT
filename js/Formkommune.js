@@ -30,6 +30,10 @@ async function postFormData(url, formData) {
     const plainFormData = Object.fromEntries(formData.entries())
     console.log(plainFormData)
 
+    const region ={}
+    region.kode = "1085"
+    plainFormData.region = region
+
     const formDataJasonString = JSON.stringify(plainFormData)
 
     const fetchOptions = {
